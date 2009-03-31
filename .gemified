@@ -1,7 +1,5 @@
 --- 
-:summary: "Passenger Stack setup for i\bsprik\bnkj\ble"
-:dependencies: 
-- "sprinkj\ble"
-:version: "0.0\b1.0"
+:summary: Passenger Stack setup for sprinkle
+:version: "1"
 :name: passenger-stack
 :author: Ben Schwarz

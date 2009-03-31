@@ -1,6 +1,8 @@
+#!/usr/bin/env sprinkle -c -s
+
 # Require our stack
 %w(essential apache scm ruby_enterprise memcached postgresql mysql).each do |r|
-  require File.join(File.dirname(__FILE__), 'stack', r)
+  require File.join(File.dirname(__FILE__), '..','lib','stack', r)
 end
 
 # What we're installing to your server
@@ -25,11 +27,11 @@ end
 deployment do
   # mechanism for deployment
   delivery :capistrano do
-    begin
-      recipes 'Capfile'
-    rescue LoadError
-      recipes 'deploy'
-    end
+    role :app, (ARGV.first || raise("You must specify a server to setup."))
+    
+    # Fill user in - if remote user is different to your local user
+    set :user, "root"
+    recipes 'deploy'
   end
  
   # source based package installer defaults
